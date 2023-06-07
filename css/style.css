@@ -621,11 +621,23 @@ img{
 	padding-top: 140px;
 	min-width: 350px;
 	border-bottom-left-radius: 6px;
-	border-top-left-radius: 8px;
+	border-top-left-radius: 6px;
 	background-repeat: no-repeat;
 	background-position: center;
+	  /* 新增动画样式 */
+    animation: bgchange 40s  infinite;
 }
 
+@keyframes bgchange {
+  0%  {background-image: url(pic/1-1.png);}
+  12.5% {background-image: url(pic/2-2.png);}
+  25%  {background-image: url(pic/3-3.png);}
+  37.5% {background-image: url(pic/4-4.png);}
+   50%  {background-image: url(pic/5-5.png);}
+  62.5% {background-image: url(pic/6-6.png);}
+  75%  {background-image: url(pic/7-7.png);}
+  100% {background-image: url(pic/1-1.png);}
+}
 .author-info .image {
 	width: 160px;
 	height: 160px;
