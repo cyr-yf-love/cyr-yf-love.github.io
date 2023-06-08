@@ -1,4 +1,4 @@
-const url = "http://124.222.206.192:8080/wedding/submitRegistration"; // Replace with your backend API URL
+const url = "https://124.222.206.192:8080/wedding/submitRegistration"; // Replace with your backend API URL
 
 const form = document.getElementById("contact-form");
 
