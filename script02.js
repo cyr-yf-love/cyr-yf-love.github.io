@@ -1,27 +1,39 @@
 const url = "http://124.222.206.192:8080/wedding/submitRegistration"; // Replace with your backend API URL
 
-// Create the data object to be sent in the request body
-const data = {
-  name: "name",
-  arriveDate: "arriveDate",
-  personNum: "personNumber",
-  phone: "phone",  
-};
+const form = document.getElementById("contact-form");
 
-// Send the POST request
-fetch(url, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json", // Set the appropriate content-type for your request
-  },
-  body: JSON.stringify(data), // Convert the data object to a JSON string
-})
-  .then((response) => response.json()) // Parse the response as JSON
-  .then((responseData) => {
-    // Handle the response data
-    console.log(responseData);
+form.addEventListener("submit", function (event) {
+  event.preventDefault(); // Prevent default form submission behavior
+
+  // Retrieve the values from the form input fields
+  const name = document.getElementById("name").value;
+  const arriveDate = document.getElementById("arriveDate").value;
+  const personNum = document.getElementById("personNum").value;
+  const phone = document.getElementById("phone").value;
+
+  // Create the data object to be sent in the request body
+  const data = {
+    name: name,
+    arriveDate: arriveDate,
+    personNum: personNum,
+    phone: phone,
+  };
+
+  // Send the POST request
+  fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
   })
-  .catch((error) => {
-    // Handle any errors
-    console.error("Error:", error);
-  });
+    .then((response) => response.json())
+    .then((responseData) => {
+      // Handle the response data
+      console.log(responseData);
+    })
+    .catch((error) => {
+      // Handle any errors
+      console.error("Error:", error);
+    });
+});
