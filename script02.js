@@ -1,10 +1,8 @@
-const url = "https://124.222.206.192:8080/wedding/submitRegistration"; // Replace with your backend API URL
+const url = "http://124.222.206.192/api.php";//"http://124.222.206.192:8080/wedding/submitRegistration"; // Replace with your backend API URL
 
 const form = document.getElementById("contact-form");
-
 form.addEventListener("submit", function (event) {
   event.preventDefault(); // Prevent default form submission behavior
-
   // Retrieve the values from the form input fields
   const name = document.getElementById("name").value;
   const arriveDate = document.getElementById("arriveDate").value;
@@ -18,22 +16,22 @@ form.addEventListener("submit", function (event) {
     personNum: personNum,
     phone: phone,
   };
-
-  // Send the POST request
-  fetch(url, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
-    },
-    body: JSON.stringify(data),
-  })
-    .then((response) => response.json())
-    .then((responseData) => {
-      // Handle the response data
-      console.log(responseData);
-    })
-    .catch((error) => {
-      // Handle any errors
-      console.error("Error:", error);
+    $.ajax({
+        url:url,
+        type:"GET",
+        data:data,
+        jsonp:"callback",
+        jsonpCallback:(result) => {
+        console.log('result');
+        console.log(result);
+            return false;
+        },
+        success:function(res){
+            var res = JSON.parse(res);
+            if(res.code == 0){
+            $("#myModal").modal();
+            }
+        }
     });
+
 });
